@@ -6,7 +6,7 @@ canva = canvas()
 canvasSize(900, 500)
 canva.configure(background="black")
 penSize(1)
-
+nnn
 #body
 canva.create_oval(300, 400, 600, 600, fill="orange")
 
