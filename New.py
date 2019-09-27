@@ -61,5 +61,5 @@ canva.create_oval(145, 98, 191, 168, fill="#F0B8A0")
 canva.create_oval(635, 98, 681, 168, fill="#F0B8A0")
 
 # text box
-label("PYTHON is AMAZING", 0, 0, font=("Times New Roman", 56), bg="#00DD10")
+label("PYTHON is AMAZING", 40, 40, font=("Times New Roman", 53), bg="#00DD10")
 run()
