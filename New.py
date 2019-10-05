@@ -31,10 +31,10 @@ def body(x, shirt_color, skin_color):
 
 def one_hair(face_x, face_y, face_radius, alpha_0, hair):
     a = polygon([(face_x - (face_radius + 30) * math.cos(alpha_0), face_y - (face_radius + 30) * math.sin(alpha_0)),
-             (face_x - (face_radius - 7) * math.cos(alpha_0) + 10 * math.sin(alpha_0),
-              face_y - (face_radius - 7) * math.sin(alpha_0) - 10 * math.cos(alpha_0)),
-             (face_x - (face_radius - 7) * math.cos(alpha_0) - 10 * math.sin(alpha_0),
-              face_y - (face_radius - 7) * math.sin(alpha_0) + 10 * math.cos(alpha_0))])
+                 (face_x - (face_radius - 7) * math.cos(alpha_0) + 10 * math.sin(alpha_0),
+                  face_y - (face_radius - 7) * math.sin(alpha_0) - 10 * math.cos(alpha_0)),
+                 (face_x - (face_radius - 7) * math.cos(alpha_0) - 10 * math.sin(alpha_0),
+                  face_y - (face_radius - 7) * math.sin(alpha_0) + 10 * math.cos(alpha_0))])
     hair.append(a)
 
 
@@ -87,7 +87,6 @@ def move_hair():
         alpha_1 = alpha_1 + 1 / 30 * math.pi
 
 
-
 hair_boy_1 = []
 hair_boy_2 = []
 windowSize(1500, 500)
@@ -103,9 +102,5 @@ label("PYTHON is REALLY AMAZING!", 20, 10, font=("Calibry", 70), bg="#00DD10", b
 
 alpha_0 = math.pi / 6 + math.pi / 30
 
-onTimer(move_hair, 100)
-
+onTimer(move_hair, 70)
 run()
-
-
-
