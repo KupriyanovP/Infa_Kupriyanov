@@ -29,15 +29,16 @@ def body(x, shirt_color, skin_color):
     c.create_oval(x + 185, 98, x + 231, 168, fill=skin_color, width=0)
 
 
-def one_hair(face_x, face_y, face_radius, alpha_0):
-    polygon([(face_x - (face_radius + 30) * math.cos(alpha_0), face_y - (face_radius + 30) * math.sin(alpha_0)),
+def one_hair(face_x, face_y, face_radius, alpha_0, hair):
+    a = polygon([(face_x - (face_radius + 30) * math.cos(alpha_0), face_y - (face_radius + 30) * math.sin(alpha_0)),
              (face_x - (face_radius - 7) * math.cos(alpha_0) + 10 * math.sin(alpha_0),
               face_y - (face_radius - 7) * math.sin(alpha_0) - 10 * math.cos(alpha_0)),
              (face_x - (face_radius - 7) * math.cos(alpha_0) - 10 * math.sin(alpha_0),
               face_y - (face_radius - 7) * math.sin(alpha_0) + 10 * math.cos(alpha_0))])
+    hair.append(a)
 
 
-def face(x, hair_color, eye_color, skin_color):
+def face(x, hair_color, eye_color, skin_color, hair):
     penSize(0)
     brushColor(skin_color)
     face_x = x
@@ -66,14 +67,29 @@ def face(x, hair_color, eye_color, skin_color):
     brushColor(hair_color)
     alpha_0 = math.pi / 6
     for i in range(20):
-        one_hair(face_x, face_y, face_radius, alpha_0)
+        one_hair(face_x, face_y, face_radius, alpha_0, hair)
         alpha_0 = alpha_0 + 1 / 30 * math.pi
 
 
-def boy(x, shirt_color, hair_color, eye_color, skin_color):
+def boy(x, shirt_color, hair_color, eye_color, skin_color, hair):
     body(x, shirt_color, skin_color)
-    face(x, hair_color, eye_color, skin_color)
+    face(x, hair_color, eye_color, skin_color, hair)
 
+
+def move_hair():
+    global hair_boy_1, alpha_0
+    for i in hair_boy_1:
+        c.delete(i)
+    alpha_1 = alpha_0
+    alpha_0 += math.pi / 30
+    for i in range(20):
+        one_hair(450, 300, 125, alpha_1, hair_boy_1)
+        alpha_1 = alpha_1 + 1 / 30 * math.pi
+
+
+
+hair_boy_1 = []
+hair_boy_2 = []
 windowSize(1500, 500)
 penColor(0, 0, 0)
 c = canvas()
@@ -81,8 +97,15 @@ canvasSize(1500, 500)
 c.configure(background="white")
 penSize(1)
 
-boy(450, 'green', '#e7cc04', '#9fb6a4', '#F0B8A0')
-boy(950, '#f77000', '#cd05fa', '#8ab3f4', '#F0B8A0')
+boy(450, 'green', '#e7cc04', '#9fb6a4', '#F0B8A0', hair_boy_1)
+boy(950, '#f77000', '#cd05fa', '#8ab3f4', '#F0B8A0', hair_boy_2)
 label("PYTHON is REALLY AMAZING!", 20, 10, font=("Calibry", 70), bg="#00DD10", bd=1)
 
+alpha_0 = math.pi / 6 + math.pi / 30
+
+onTimer(move_hair, 100)
+
 run()
+
+
+
